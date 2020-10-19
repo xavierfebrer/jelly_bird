@@ -4,4 +4,5 @@ Made using my owne Hack3dEngine, the engine aims to provide multiple support for
 
 To make the bird fly touch the left or right part of the screen.
 
+[Download Android Google Play](https://play.google.com/store/apps/details?id=com.hack2s.pixy_bird)
 ![](jelly_bird.png)
