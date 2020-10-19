@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        applicationId = 'com.hack2s.jelly_bird'
+        minSdkVersion 26
+        targetSdkVersion 28
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_STL=c++_static'
+            }
+        }
+    }
+    signingConfigs {
+        debug {
+            storeFile file('../KEYSTORE')
+            storePassword 'KEYSTOREPASS'
+            keyAlias 'KEYALIAS'
+            keyPassword 'KEYALIASPASS'
+        }
+        release {
+            storeFile file('../KEYSTORE')
+            storePassword 'KEYSTOREPASS'
+            keyAlias 'KEYALIAS'
+            keyPassword 'KEYALIASPASS'
+        }
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+            applicationIdSuffix ".debug"
+            testCoverageEnabled true
+        }
+        release {
+            debuggable false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path 'src/main/cpp/CMakeLists.txt'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+}
